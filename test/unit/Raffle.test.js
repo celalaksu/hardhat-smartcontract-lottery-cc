@@ -151,7 +151,7 @@ const { developmentChains, networkConfig } = require("../../helper-hardhat-confi
                           // 2 saniyede gerçekleşmezse reject yani geri çevrilecek.
                           try {
                               const recentWinner = await raffle.getRecentWinner()
-                              console.log(recentWinner)
+                              console.log("Winner : ", recentWinner)
                               console.log(accounts[2].address)
                               console.log(accounts[0].address)
                               console.log(accounts[1].address)

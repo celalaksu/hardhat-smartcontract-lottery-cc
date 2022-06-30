@@ -39,7 +39,7 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
     bytes32 private immutable i_gasLane;
     uint64 private immutable i_subscriptionId;
     uint16 private constant REQUEST_CONFIRMATIONS = 3;
-    uint16 private constant NUM_WORDS = 1;
+    uint32 private constant NUM_WORDS = 1;
     uint32 private immutable i_callbackGasLimit;
 
     // Lottery Variables
@@ -101,6 +101,7 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
         bytes memory /* checkData */
     )
         public
+        view
         override
         returns (
             bool upkeepNeeded,
@@ -112,6 +113,7 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
         bool hasPlayers = (s_players.length > 0);
         bool hasBalance = address(this).balance > 0;
         upkeepNeeded = (isOpen && timePassed && hasPlayers && hasBalance);
+        return (upkeepNeeded, "0X0");
     }
 
     function performUpkeep(
